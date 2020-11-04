@@ -1,8 +1,8 @@
 from glob import glob
 import os
 from datetime import datetime, timedelta
-from get_latest_WNF import get_latest_file_from_folder
-from ActiveWNF_filepath import pathfinder
+from get_latest_WNF import GetLatestFile
+from ActiveWNF_filepath import NewPath
 import pandas as pd
 import numpy as np
 from get_pdf_values_file import gas_req_dict
@@ -16,12 +16,14 @@ current_month_year = str(now.strftime("%B"))+" "+str(now.year)
 previous_month_name = datetime.now()-timedelta(31)
 previous_month_year = str(previous_month_name.strftime("%B"))+" "+str(now.year)
 
+
+
 # Get the latest file from dir and when there is no current use the previous month last updated file
 try:
-    latest_file = get_latest_file_from_folder(
+    latest_file =GetLatestFile().get_latest_file_from_folder(
     year, current_month_year)
 except:
-    latest_file = get_latest_file_from_folder(
+    latest_file =GetLatestFile().get_latest_file_from_folder(
     year, previous_month_year)
 # Get Latest file from current month
 df = pd.read_csv(latest_file, delimiter="|")
@@ -46,6 +48,6 @@ df['StaticBTUfactor'] = np.where(
 #del df_update['Unnamed: 0']
 
 # Update WNF file is created (comprises of recent and previous months files)
-mypath = os.path.join(pathfinder())
+mypath = os.path.join(NewPath().wnf_path())
 df.to_csv(path_or_buf=mypath)
 
