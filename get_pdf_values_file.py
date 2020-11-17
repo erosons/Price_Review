@@ -30,7 +30,7 @@ def gas_req_dict():
     gas_requiremnt_file = pd.read_csv("gas_req_file.csv")
 
     gas_req_dic = {}
-    # Columns swap
+    # Columns swap-replacing the header with row 2
     gas_requiremnt_file.columns = gas_requiremnt_file.iloc[2]
 
     # This area is responsible data cleaning of the csv

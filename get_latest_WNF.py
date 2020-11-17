@@ -12,9 +12,9 @@ class GetLatestFile():
         lastest_file = max(list_of_files, key=os.path.getctime)
         return lastest_file
 
+
     def get_latest_file_from_Con_folder(self,current_year):
-        list_of_files = glob(os.path.join(
-            r'H:\Corp\Dept\Choice\Operations\Transactions\CMS\CON_Files', current_year,'*.xlsx'))
+        list_of_files = glob(os.path.join(r'H:\Corp\Dept\Choice\Operations\Transactions\CMS\CON Files', current_year,'*.xlsx'))
         lastest_file = max(list_of_files, key=os.path.getctime)
         return lastest_file
 
